@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color:bisque;
+}
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    text-align: justify;
+    margin-left: 5rem;
+}
+
+#titulo-principal{
+    text-align: center;
+    color: darkslategray;
+    font-size: 3rem;
+    margin: 10px 0 10px 0;
+}
+
+.subtittle{
+    color: darkslategray;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 12px 0 12px 5rem;
+    text-align: start;
+}
+
+ul a{
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+    margin-left: 5rem;
+}
+
+img{
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+    border: rgb(0, 0, 0) 2px solid;
+}

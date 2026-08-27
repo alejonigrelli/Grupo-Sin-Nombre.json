@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción a Talleres</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Crear Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="taller">Taller de Interés:</label>
+            <select id="taller" name="taller" required>
+                <option value="fotografia">Fotografía</option>
+                <option value="programacion">Programación</option>
+                <option value="marketing">Marketing Digital</option>
+            </select>
+        </div>
+        <fieldset>
+            <legend>Tipo de Asistencia:</legend>
+            <div>
+                <input type="radio" id="presencial" name="asistencia" value="presencial" required>
+                <label for="presencial">Presencial</label>
+            </div>
+            <div>
+                <input type="radio" id="virtual" name="asistencia" value="virtual">
+                <label for="virtual">Virtual</label>
+            </div>
+        </fieldset>
+        <div>
+            <input type="checkbox" id="terminos" name="terminos" required>
+            <label for="terminos">Acepto los términos y condiciones</label>
+        </div>
+        <div>
+            <label for="comentarios">Comentarios adicionales:</label>
+            <textarea id="comentarios" name="comentarios" rows="5"></textarea>
+        </div>
+        <button type="submit">Inscribirme</button>
+    </form>
+</body>
+</html>
