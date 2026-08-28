@@ -11,4 +11,6 @@ function precioFinal(precioBaseSilla, iva) {
     return precioFinal;
 }
 
-console.log("Precio base de la silla: ", precioBaseSilla, "\nIVA: ", iva, "\nPrecio final: ", precioFinal(precioBaseSilla, iva));
+console.log("Precio base de la silla: $", precioBaseSilla, 
+    "\nIVA: $", iva, 
+    "\nPrecio final: $", precioFinal(precioBaseSilla, iva));
