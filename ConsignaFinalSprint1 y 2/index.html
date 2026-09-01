@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muebleria Hermanos Jota</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="header__logo">Hermanos Jota</a>
+            <nav class="header__nav">
+                <a href="index.html">Inicio</a>
+                <a href="pages/productos.html">Productos</a>
+                <a href="pages/contacto.html">Contacto</a>
+                <button class="header__carrito" id="btn-carrito">
+                    &#128722;
+                    <span class="header__carrito-contador" id="carrito-contador">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Banner -->
+        <section class="hero">
+            <h1 class="hero__titulo">Muebles con estilo para tu hogar</h1>
+            <p class="hero__subtitulo">Fabricados en madera maciza con la mejor calidad artesanal</p>
+            <a href="pages/productos.html" class="hero__boton">Ver Catalogo</a>
+        </section>
+
+        <!-- Productos Destacados -->
+        <section class="seccion">
+            <div class="container">
+                <h2 class="seccion__titulo">Productos Destacados</h2>
+                <div class="productos-grilla" id="productos-destacados">
+                    <!-- Se cargan dinamicamente con JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <h3 class="footer__titulo">Contacto</h3>
+                <p class="footer__texto">hermanosjota@email.com</p>
+                <p class="footer__texto">(011) 1234-5678</p>
+            </div>
+            <div>
+                <h3 class="footer__titulo">Paginas</h3>
+                <div class="footer__links">
+                    <a href="index.html">Inicio</a>
+                    <a href="pages/productos.html">Productos</a>
+                    <a href="pages/contacto.html">Contacto</a>
+                </div>
+            </div>
+            <div>
+                <p class="footer__copy">&copy; 2025 Muebleria Hermanos Jota. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/productos.js"></script>
+    <script src="scripts/app.js"></script>
+    <script>
+        // Carga asincrona de productos destacados con setTimeout
+        function cargarDestacados() {
+            setTimeout(function () {
+                var contenedor = document.getElementById("productos-destacados");
+                var destacados = productos.filter(function (p) {
+                    return p.destacado === true;
+                });
+
+                for (var i = 0; i < destacados.length; i++) {
+                    var producto = destacados[i];
+
+                    var card = document.createElement("article");
+                    card.className = "producto-card";
+
+                    var img = document.createElement("img");
+                    img.src = producto.imagen;
+                    img.alt = producto.nombre;
+                    img.className = "producto-card__imagen";
+
+                    var info = document.createElement("div");
+                    info.className = "producto-card__info";
+
+                    var nombre = document.createElement("h3");
+                    nombre.className = "producto-card__nombre";
+                    nombre.textContent = producto.nombre;
+
+                    var precio = document.createElement("p");
+                    precio.className = "producto-card__precio";
+                    precio.textContent = "$" + producto.precio.toLocaleString();
+
+                    var link = document.createElement("a");
+                    link.className = "producto-card__link";
+                    link.href = "pages/producto.html?id=" + producto.id;
+                    link.textContent = "Ver detalle";
+
+                    info.appendChild(nombre);
+                    info.appendChild(precio);
+                    info.appendChild(link);
+                    card.appendChild(img);
+                    card.appendChild(info);
+                    contenedor.appendChild(card);
+                }
+            }, 500);
+        }
+
+        cargarDestacados();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Muebleria Hermanos Jota</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="header__logo">Hermanos Jota</a>
+            <nav class="header__nav">
+                <a href="../index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="contacto.html">Contacto</a>
+                <button class="header__carrito" id="btn-carrito">
+                    &#128722;
+                    <span class="header__carrito-contador" id="carrito-contador">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="contacto">
+            <div class="container">
+                <h1 class="seccion__titulo">Contactanos</h1>
+                <form class="contacto__formulario" id="formulario-contacto">
+                    <div class="contacto__grupo">
+                        <label class="contacto__label" for="nombre">Nombre:</label>
+                        <input class="contacto__input" type="text" id="nombre" name="nombre">
+                        <span class="contacto__error" id="error-nombre"></span>
+                    </div>
+                    <div class="contacto__grupo">
+                        <label class="contacto__label" for="email">Email:</label>
+                        <input class="contacto__input" type="email" id="email" name="email">
+                        <span class="contacto__error" id="error-email"></span>
+                    </div>
+                    <div class="contacto__grupo">
+                        <label class="contacto__label" for="mensaje">Mensaje:</label>
+                        <textarea class="contacto__textarea" id="mensaje" name="mensaje" rows="5"></textarea>
+                        <span class="contacto__error" id="error-mensaje"></span>
+                    </div>
+                    <button class="contacto__boton" type="submit">Enviar Mensaje</button>
+                </form>
+                <div class="contacto__mensaje-exito" id="mensaje-exito">
+                    ¡Mensaje enviado con exito! Nos pondremos en contacto pronto.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <h3 class="footer__titulo">Contacto</h3>
+                <p class="footer__texto">hermanosjota@email.com</p>
+                <p class="footer__texto">(011) 1234-5678</p>
+            </div>
+            <div>
+                <h3 class="footer__titulo">Paginas</h3>
+                <div class="footer__links">
+                    <a href="../index.html">Inicio</a>
+                    <a href="productos.html">Productos</a>
+                    <a href="contacto.html">Contacto</a>
+                </div>
+            </div>
+            <div>
+                <p class="footer__copy">&copy; 2025 Muebleria Hermanos Jota. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/productos.js"></script>
+    <script src="../scripts/app.js"></script>
+    <script src="../scripts/contacto.js"></script>
+</body>
+
+</html>
