@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muebleria Hermanos Jota</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 
@@ -14,10 +15,8 @@
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <a href="index.html" class="header__logo">
-                <img src="img/productos/logo.svg" alt="" class="header__logo-img">
-                Hermanos Jota
-            </a>
+            <a href="index.html" class="header__logo"><img src="img/productos/logo.svg" alt="Hermanos Jota"
+                    class="header__logo-img"> Hermanos Jota </a>
             <nav class="header__nav">
                 <a href="index.html">Inicio</a>
                 <a href="pages/productos.html">Productos</a>
@@ -74,23 +73,23 @@
     <script src="scripts/productos.js"></script>
     <script src="scripts/app.js"></script>
     <script>
-      function cargarDestacados() {
-        const contenedor = document.getElementById("productos-destacados");
-        if (!contenedor) return;
+        function cargarDestacados() {
+            const contenedor = document.getElementById("productos-destacados");
+            if (!contenedor) return;
 
-        contenedor.innerHTML = "<p>Cargando productos destacados...</p>";
+            contenedor.innerHTML = "<p>Cargando productos destacados...</p>";
 
-        setTimeout(function () {
-          contenedor.innerHTML = "";
-          const destacados = productos.filter(function (p) {
-            return p.destacado === true;
-          });
+            setTimeout(function () {
+                contenedor.innerHTML = "";
+                const destacados = productos.filter(function (p) {
+                    return p.destacado === true;
+                });
 
-          destacados.forEach(function (producto) {
-            const card = document.createElement("article");
-            card.className = "producto-card";
+                destacados.forEach(function (producto) {
+                    const card = document.createElement("article");
+                    card.className = "producto-card";
 
-            card.innerHTML = `
+                    card.innerHTML = `
               <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-card__imagen" loading="lazy">
               <div class="producto-card__info">
                 <h3 class="producto-card__nombre">${producto.nombre}</h3>
@@ -99,12 +98,13 @@
               </div>
             `;
 
-            contenedor.appendChild(card);
-          });
-        }, 500);
-      }
+                    contenedor.appendChild(card);
+                });
+            }, 500);
+        }
 
-      document.addEventListener("DOMContentLoaded", cargarDestacados);
+        document.addEventListener("DOMContentLoaded", cargarDestacados);
     </script>
 </body>
+
 </html>

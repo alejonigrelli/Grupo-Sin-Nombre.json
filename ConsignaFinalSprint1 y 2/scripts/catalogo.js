@@ -1,9 +1,3 @@
-// En productos.js las rutas de imagen se guardan desde la raiz del proyecto
-// (por ejemplo "img/productos/AparadorUspallata.png"), porque asi las usa
-// index.html. Esta pagina vive dentro de /pages, o sea un nivel mas abajo,
-// asi que hay que subir uno con "../" para llegar a la carpeta img.
-const RUTA_BASE = "../";
-
 /** Formatea un numero como precio en moneda ARS */
 function formatearPrecio(precio) {
   return "$" + precio.toLocaleString("es-AR");
@@ -26,7 +20,7 @@ function renderizarProductos(lista) {
     card.className = "producto-card";
 
     card.innerHTML = `
-      <img src="${RUTA_BASE}${producto.imagen}" alt="${producto.nombre}" class="producto-card__imagen" loading="lazy">
+      <img src="../${producto.imagen}" alt="${producto.nombre}" class="producto-card__imagen" loading="lazy">
       <div class="producto-card__info">
         <h3 class="producto-card__nombre">${producto.nombre}</h3>
         <p class="producto-card__precio">${formatearPrecio(producto.precio)}</p>
@@ -43,14 +37,11 @@ setTimeout(function () {
   renderizarProductos(productos);
 }, 500);
 
-// Busqueda en vivo por nombre y categoria
-const buscador = document.getElementById("buscador");
-if (buscador) {
-  buscador.addEventListener("input", function () {
-    const texto = buscador.value.trim().toLowerCase();
-    const filtrados = productos.filter(function (p) {
-      return p.nombre.toLowerCase().includes(texto) || p.categoria.toLowerCase().includes(texto);
-    });
-    renderizarProductos(filtrados);
+var buscador = document.getElementById("buscador");
+buscador.addEventListener("input", function () {
+  var texto = buscador.value.toLowerCase();
+  var filtrados = productos.filter(function (p) {
+    return p.nombre.toLowerCase().includes(texto);
   });
-}
+  renderizarProductos(filtrados);
+});

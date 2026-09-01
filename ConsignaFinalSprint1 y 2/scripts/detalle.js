@@ -1,7 +1,3 @@
-// Igual que en catalogo.js: esta pagina esta dentro de /pages, un nivel por
-// debajo de la carpeta img, asi que hay que subir uno con "../".
-const RUTA_BASE = "../";
-
 const params = new URLSearchParams(window.location.search);
 const id = parseInt(params.get("id"), 10);
 const contenedor = document.getElementById("detalle-contenido");
@@ -22,7 +18,7 @@ if (producto && contenedor) {
   }
 
   contenedor.innerHTML = `
-    <img src="${RUTA_BASE}${producto.imagen}" alt="${producto.nombre}" class="detalle__imagen">
+    <img src="../${producto.imagen}" alt="${producto.nombre}" class="detalle__imagen">
     <div class="detalle__info">
       <h1 class="detalle__nombre">${producto.nombre}</h1>
       <p class="detalle__descripcion">${producto.descripcion}</p>
