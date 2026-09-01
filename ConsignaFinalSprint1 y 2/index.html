@@ -19,7 +19,7 @@
                 <a href="index.html">Inicio</a>
                 <a href="pages/productos.html">Productos</a>
                 <a href="pages/contacto.html">Contacto</a>
-                <button class="header__carrito" id="btn-carrito">
+                <button class="header__carrito" id="btn-carrito" type="button" aria-label="Carrito de compras">
                     &#128722;
                     <span class="header__carrito-contador" id="carrito-contador">0</span>
                 </button>
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div>
-                <p class="footer__copy">&copy; 2025 Muebleria Hermanos Jota. Todos los derechos reservados.</p>
+                <p class="footer__copy">&copy; 2026 Muebleria Hermanos Jota. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -71,53 +71,37 @@
     <script src="scripts/productos.js"></script>
     <script src="scripts/app.js"></script>
     <script>
-        // Carga asincrona de productos destacados con setTimeout
-        function cargarDestacados() {
-            setTimeout(function () {
-                var contenedor = document.getElementById("productos-destacados");
-                var destacados = productos.filter(function (p) {
-                    return p.destacado === true;
-                });
+      function cargarDestacados() {
+        const contenedor = document.getElementById("productos-destacados");
+        if (!contenedor) return;
 
-                for (var i = 0; i < destacados.length; i++) {
-                    var producto = destacados[i];
+        contenedor.innerHTML = "<p>Cargando productos destacados...</p>";
 
-                    var card = document.createElement("article");
-                    card.className = "producto-card";
+        setTimeout(function () {
+          contenedor.innerHTML = "";
+          const destacados = productos.filter(function (p) {
+            return p.destacado === true;
+          });
 
-                    var img = document.createElement("img");
-                    img.src = producto.imagen;
-                    img.alt = producto.nombre;
-                    img.className = "producto-card__imagen";
+          destacados.forEach(function (producto) {
+            const card = document.createElement("article");
+            card.className = "producto-card";
 
-                    var info = document.createElement("div");
-                    info.className = "producto-card__info";
+            card.innerHTML = `
+              <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-card__imagen" loading="lazy">
+              <div class="producto-card__info">
+                <h3 class="producto-card__nombre">${producto.nombre}</h3>
+                <p class="producto-card__precio">$${producto.precio.toLocaleString("es-AR")}</p>
+                <a href="pages/producto.html?id=${producto.id}" class="producto-card__link">Ver detalle</a>
+              </div>
+            `;
 
-                    var nombre = document.createElement("h3");
-                    nombre.className = "producto-card__nombre";
-                    nombre.textContent = producto.nombre;
+            contenedor.appendChild(card);
+          });
+        }, 500);
+      }
 
-                    var precio = document.createElement("p");
-                    precio.className = "producto-card__precio";
-                    precio.textContent = "$" + producto.precio.toLocaleString();
-
-                    var link = document.createElement("a");
-                    link.className = "producto-card__link";
-                    link.href = "pages/producto.html?id=" + producto.id;
-                    link.textContent = "Ver detalle";
-
-                    info.appendChild(nombre);
-                    info.appendChild(precio);
-                    info.appendChild(link);
-                    card.appendChild(img);
-                    card.appendChild(info);
-                    contenedor.appendChild(card);
-                }
-            }, 500);
-        }
-
-        cargarDestacados();
+      document.addEventListener("DOMContentLoaded", cargarDestacados);
     </script>
 </body>
-
 </html>
