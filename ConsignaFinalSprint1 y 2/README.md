@@ -1,11 +1,11 @@
 # Muebleria Hermanos Jota
 
 ## Integrantes
-- Integrante 1
-- Integrante 2
-- Integrante 3
-- Integrante 4
-- Integrante 5
+- Gabriel Ollier
+- Ivan Mariano Yamin
+- Justo Cardilli
+- Sebastian Farnochi
+- Alejo Nigrelli
 
 ## Descripcion
 Sitio web de e-commerce frontend para una muebleria de muebles de madera. El sitio permite recorrer un catalogo de productos, ver el detalle de cada mueble, simular la compra con un carrito y contactarse a traves de un formulario con validacion.
