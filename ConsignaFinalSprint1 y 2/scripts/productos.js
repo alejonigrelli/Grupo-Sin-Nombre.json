@@ -150,6 +150,17 @@ const productos = [
   },
   {
     id: 11,
+    nombre: "Silla de Comedor Tapizada",
+    categoria: "sillas",
+    precio: 32000,
+    imagen: "img/productos/silla-comedor.png",
+    descripcion: "Silla de comedor con asiento y respaldo tapizados en tela. Diseño moderno y confortable para tu sala de comedor.",
+    materiales: "Tela de algodón con estructura de madera",
+    dimensiones: "45 × 45 × 85 cm",
+    destacado: false
+  },
+  {
+    id: 12,
     nombre: "Silla de Trabajo Belgrano",
     precio: 175000,
     imagen: "img/productos/SillaDeTrabajoBelgrano.png",
