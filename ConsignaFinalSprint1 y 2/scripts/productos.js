@@ -114,7 +114,7 @@ const productos = [
     nombre: "Silla de Comedor Tapizada",
     categoria: "sillas",
     precio: 32000,
-    imagen: "img/productos/silla-comedor.jpg",
+    imagen: "img/productos/silla-comedor.png",
     descripcion: "Silla de comedor con asiento y respaldo tapizados en tela. Diseño moderno y confortable para tu sala de comedor.",
     materiales: "Tela de algodón con estructura de madera",
     dimensiones: "45 x 45 x 85 cm",
