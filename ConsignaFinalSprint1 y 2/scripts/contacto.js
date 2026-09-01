@@ -1,51 +1,48 @@
-var formulario = document.getElementById("formulario-contacto");
+const formulario = document.getElementById("formulario-contacto");
 
-formulario.addEventListener("submit", function (event) {
-  event.preventDefault();
+if (formulario) {
+  formulario.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-  // Obtener valores
-  var nombre = document.getElementById("nombre").value.trim();
-  var email = document.getElementById("email").value.trim();
-  var mensaje = document.getElementById("mensaje").value.trim();
+    const nombre = document.getElementById("nombre").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mensaje = document.getElementById("mensaje").value.trim();
 
-  // Obtener spans de error
-  var errorNombre = document.getElementById("error-nombre");
-  var errorEmail = document.getElementById("error-email");
-  var errorMensaje = document.getElementById("error-mensaje");
+    const errorNombre = document.getElementById("error-nombre");
+    const errorEmail = document.getElementById("error-email");
+    const errorMensaje = document.getElementById("error-mensaje");
+    const mensajeExito = document.getElementById("mensaje-exito");
 
-  // Limpiar errores previos
-  errorNombre.textContent = "";
-  errorEmail.textContent = "";
-  errorMensaje.textContent = "";
+    // Limpieza de estados previos
+    errorNombre.textContent = "";
+    errorEmail.textContent = "";
+    errorMensaje.textContent = "";
+    mensajeExito.style.display = "none";
 
-  var esValido = true;
+    let esValido = true;
 
-  // Validar nombre
-  if (nombre === "") {
-    errorNombre.textContent = "El nombre es obligatorio.";
-    esValido = false;
-  }
+    if (nombre === "") {
+      errorNombre.textContent = "El nombre es obligatorio.";
+      esValido = false;
+    }
 
-  // Validar email con regex
-  var regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (email === "") {
-    errorEmail.textContent = "El email es obligatorio.";
-    esValido = false;
-  } else if (!regexEmail.test(email)) {
-    errorEmail.textContent = "Ingresa un email valido.";
-    esValido = false;
-  }
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email === "") {
+      errorEmail.textContent = "El email es obligatorio.";
+      esValido = false;
+    } else if (!regexEmail.test(email)) {
+      errorEmail.textContent = "Ingresa un email valido.";
+      esValido = false;
+    }
 
-  // Validar mensaje
-  if (mensaje === "") {
-    errorMensaje.textContent = "El mensaje es obligatorio.";
-    esValido = false;
-  }
+    if (mensaje === "") {
+      errorMensaje.textContent = "El mensaje es obligatorio.";
+      esValido = false;
+    }
 
-  // Si todo es valido, mostrar mensaje de exito
-  if (esValido) {
-    var mensajeExito = document.getElementById("mensaje-exito");
-    mensajeExito.style.display = "block";
-    formulario.reset();
-  }
-});
+    if (esValido) {
+      mensajeExito.style.display = "block";
+      formulario.reset();
+    }
+  });
+}

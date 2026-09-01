@@ -1,55 +1,50 @@
-// Renderizar productos en la grilla
-function renderizarProductos(lista) {
-  var grilla = document.getElementById("grilla-productos");
-  grilla.innerHTML = "";
-
-  for (var i = 0; i < lista.length; i++) {
-    var producto = lista[i];
-
-    var card = document.createElement("article");
-    card.className = "producto-card";
-
-    var img = document.createElement("img");
-    img.src = "../" + producto.imagen;
-    img.alt = producto.nombre;
-    img.className = "producto-card__imagen";
-
-    var info = document.createElement("div");
-    info.className = "producto-card__info";
-
-    var nombre = document.createElement("h3");
-    nombre.className = "producto-card__nombre";
-    nombre.textContent = producto.nombre;
-
-    var precio = document.createElement("p");
-    precio.className = "producto-card__precio";
-    precio.textContent = "$" + producto.precio.toLocaleString();
-
-    var link = document.createElement("a");
-    link.className = "producto-card__link";
-    link.href = "producto.html?id=" + producto.id;
-    link.textContent = "Ver detalle";
-
-    info.appendChild(nombre);
-    info.appendChild(precio);
-    info.appendChild(link);
-    card.appendChild(img);
-    card.appendChild(info);
-    grilla.appendChild(card);
-  }
+/** Formatea un numero como precio en moneda ARS */
+function formatearPrecio(precio) {
+  return "$" + precio.toLocaleString("es-AR");
 }
 
-// Carga asincrona simulada con setTimeout
+/** Renderiza la coleccion de productos recibida en la grilla */
+function renderizarProductos(lista) {
+  const grilla = document.getElementById("grilla-productos");
+  if (!grilla) return;
+
+  grilla.innerHTML = "";
+
+  if (lista.length === 0) {
+    grilla.innerHTML = "<p class='productos-vacio'>No se encontraron productos que coincidan con la busqueda.</p>";
+    return;
+  }
+
+  lista.forEach(function (producto) {
+    const card = document.createElement("article");
+    card.className = "producto-card";
+
+    card.innerHTML = `
+      <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-card__imagen" loading="lazy">
+      <div class="producto-card__info">
+        <h3 class="producto-card__nombre">${producto.nombre}</h3>
+        <p class="producto-card__precio">${formatearPrecio(producto.precio)}</p>
+        <a href="producto.html?id=${producto.id}" class="producto-card__link">Ver detalle</a>
+      </div>
+    `;
+
+    grilla.appendChild(card);
+  });
+}
+
+// Carga asincrona simulada
 setTimeout(function () {
   renderizarProductos(productos);
 }, 500);
 
-// Busqueda de productos
-var buscador = document.getElementById("buscador");
-buscador.addEventListener("input", function () {
-  var texto = buscador.value.toLowerCase();
-  var filtrados = productos.filter(function (p) {
-    return p.nombre.toLowerCase().includes(texto);
+// Busqueda en vivo por nombre y categoria
+const buscador = document.getElementById("buscador");
+if (buscador) {
+  buscador.addEventListener("input", function () {
+    const texto = buscador.value.trim().toLowerCase();
+    const filtrados = productos.filter(function (p) {
+      return p.nombre.toLowerCase().includes(texto) || p.categoria.toLowerCase().includes(texto);
+    });
+    renderizarProductos(filtrados);
   });
-  renderizarProductos(filtrados);
-});
+}
