@@ -156,7 +156,7 @@ const productos = [
       imagen: "img/productos/silla-comedor.png",
       descripcion: "Silla de comedor con asiento y respaldo tapizados en tela. Diseño moderno y confortable para tu sala de comedor.",
       materiales: "Tela de algodón con estructura de madera",
-      dimensiones: "45 x 45 x 85 cm",
+      dimensiones: "45 × 45 × 85 cm",
       destacado: false
     },
     {
