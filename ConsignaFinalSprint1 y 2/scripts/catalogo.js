@@ -1,3 +1,9 @@
+// En productos.js las rutas de imagen se guardan desde la raiz del proyecto
+// (por ejemplo "img/productos/AparadorUspallata.png"), porque asi las usa
+// index.html. Esta pagina vive dentro de /pages, o sea un nivel mas abajo,
+// asi que hay que subir uno con "../" para llegar a la carpeta img.
+const RUTA_BASE = "../";
+
 /** Formatea un numero como precio en moneda ARS */
 function formatearPrecio(precio) {
   return "$" + precio.toLocaleString("es-AR");
@@ -20,7 +26,7 @@ function renderizarProductos(lista) {
     card.className = "producto-card";
 
     card.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}" class="producto-card__imagen" loading="lazy">
+      <img src="${RUTA_BASE}${producto.imagen}" alt="${producto.nombre}" class="producto-card__imagen" loading="lazy">
       <div class="producto-card__info">
         <h3 class="producto-card__nombre">${producto.nombre}</h3>
         <p class="producto-card__precio">${formatearPrecio(producto.precio)}</p>

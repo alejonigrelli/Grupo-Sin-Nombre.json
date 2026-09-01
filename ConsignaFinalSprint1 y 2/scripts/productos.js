@@ -3,7 +3,7 @@ const productos = [
     id: 1,
     nombre: "Aparador Uspallata",
     precio: 315000,
-    imagen: "",
+    imagen: "img/productos/AparadorUspallata.png",
     destacado: false,
     descripcion: "Sistema modular de estantes abierto que combina estructura de acero Sage Green y repisas en roble claro. Perfecta para colecciones y objetos de diseño, su diseño versátil se adapta a cualquier espacio contemporáneo con elegancia funcional.",
     especificaciones: {
@@ -18,7 +18,7 @@ const productos = [
     id: 2,
     nombre: "Biblioteca Recoleta",
     precio: 315000,
-    imagen: "",
+    imagen: "img/productos/BibliotecaRecoleta.png",
     destacado: true,
     descripcion: "Sistema modular de estantes abierto que combina estructura de acero Sage Green y repisas en roble claro. Perfecta para colecciones y objetos de diseño, su diseño versátil se adapta a cualquier espacio contemporáneo con elegancia funcional.",
     especificaciones: {
@@ -33,7 +33,7 @@ const productos = [
     id: 3,
     nombre: "Butaca Mendoza",
     precio: 245000,
-    imagen: "",
+    imagen: "img/productos/ButacaMendoza.png",
     destacado: false,
     descripcion: "Butaca tapizada en bouclé Dusty Rose con base de madera de guatambú. El respaldo curvo abraza el cuerpo y ofrece máximo confort, mientras que su diseño orgánico aporta calidez y sofisticación a cualquier ambiente contemporáneo.",
     especificaciones: {
@@ -48,7 +48,7 @@ const productos = [
     id: 4,
     nombre: "Sillón Copacabana",
     precio: 420000,
-    imagen: "",
+    imagen: "img/productos/SillónCopacabana.png",
     destacado: true,
     descripcion: "Sillón lounge en cuero cognac con base giratoria en acero Burnt Sienna. Inspirado en la estética brasilera moderna de los 60, combina comodidad excepcional con un diseño icónico que trasciende tendencias y épocas.",
     especificaciones: {
@@ -63,7 +63,7 @@ const productos = [
     id: 5,
     nombre: "Mesa de Centro Araucaria",
     precio: 195000,
-    imagen: "",
+    imagen: "img/productos/MesaDeCentroAraucaria.png",
     destacado: true,
     descripcion: "Mesa de centro con sobre circular de mármol Patagonia y base de tres patas en madera de nogal. Su diseño minimalista se convierte en el punto focal perfecto para cualquier sala de estar contemporánea, combinando la frialdad del mármol con la calidez de la madera.",
     especificaciones: {
@@ -78,7 +78,7 @@ const productos = [
     id: 6,
     nombre: "Mesa de Noche Aconcagua",
     precio: 95000,
-    imagen: "",
+    imagen: "img/productos/MesaDeNocheAconcagua.png",
     destacado: false,
     descripcion: "Mesa de noche con cajón oculto y repisa inferior en roble certificado FSC®. Su diseño limpio y funcional permite convivir con diferentes estilos de dormitorio, ofreciendo almacenamiento discreto y elegante para objetos personales.",
     especificaciones: {
@@ -93,7 +93,7 @@ const productos = [
     id: 7,
     nombre: "Sofá Patagonia",
     precio: 560000,
-    imagen: "",
+    imagen: "img/productos/SofáPatagonia.png",
     destacado: false,
     descripcion: "Sofá de tres cuerpos tapizado en lino Warm Alabaster con patas cónicas de madera. Los cojines combinan espuma de alta resiliencia con plumón reciclado, ofreciendo comodidad duradera y sostenible para el hogar moderno.",
     especificaciones: {
@@ -108,7 +108,7 @@ const productos = [
     id: 8,
     nombre: "Mesa Comedor Pampa",
     precio: 380000,
-    imagen: "",
+    imagen: "img/productos/MesaComedorPampa.png",
     destacado: true,
     descripcion: "Mesa extensible de roble macizo con tablero biselado y sistema de apertura suave. Su diseño robusto y elegante se adapta perfectamente a reuniones íntimas o grandes celebraciones familiares, extendiéndose de 6 a 10 comensales.",
     especificaciones: {
@@ -123,7 +123,7 @@ const productos = [
     id: 9,
     nombre: "Sillas Córdoba",
     precio: 185000,
-    imagen: "",
+    imagen: "img/productos/SillasCórdoba.png",
     destacado: false,
     descripcion: "Set de cuatro sillas apilables en contrachapado moldeado de nogal y estructura tubular pintada en Sage Green. Su diseño ergonómico y materiales de calidad garantizan comodidad y durabilidad en el uso diario, perfectas para comedores contemporáneos.",
     especificaciones: {
@@ -138,7 +138,7 @@ const productos = [
     id: 10,
     nombre: "Escritorio Costa",
     precio: 210000,
-    imagen: "",
+    imagen: "img/productos/EscritorioCosta.png",
     descripcion: "Escritorio compacto con cajón organizado y tapa pasacables integrada en bambú laminado. Ideal para espacios de trabajo en casa, combina funcionalidad moderna con estética minimalista y sostenible, perfecto para el trabajo remoto.",
     especificaciones: {
       "Medidas": "120 × 60 × 75 cm",
@@ -152,7 +152,7 @@ const productos = [
     id: 11,
     nombre: "Silla de Trabajo Belgrano",
     precio: 175000,
-    imagen: "",
+    imagen: "img/productos/SillaDeTrabajoBelgrano.png",
     destacado: false,
     descripcion: "Silla ergonómica regulable en altura con respaldo de malla transpirable y asiento tapizado en tejido reciclado. Diseñada para largas jornadas de trabajo con máximo confort y apoyo lumbar, ideal para oficinas en casa y espacios de coworking.",
     especificaciones: {
