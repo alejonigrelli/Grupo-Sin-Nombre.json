@@ -8,17 +8,19 @@
 - Alejo Nigrelli
 
 ## Arquitectura
+
+```text
 /
-├── backend/          # Servidor Node.js + Express
+├── backend/                  # Servidor Node.js + Express
 │   ├── data/
-│   │   └── productos.js     # Array de productos (datos locales)
+│   │   └── productos.js      # Array de productos (datos locales)
 │   ├── routes/
-│   │   └── productos.js     # Rutas con express.Router
+│   │   └── productos.js      # Rutas con express.Router
 │   ├── public/
 │   │   └── img/              # Imágenes de productos servidas estáticamente
 │   └── index.js              # Servidor principal, middlewares
 │
-└── client/           # Aplicación React (create-react-app)
+└── client/                   # Aplicación React (create-react-app)
     └── src/
         ├── components/
         │   ├── Navbar.jsx
@@ -29,7 +31,7 @@
         │   └── ContactForm.jsx
         ├── App.js            # Estado del carrito, fetch, renderizado condicional
         └── App.css           # Estilos (mismos del sprint anterior)
-
+```
 ## Instalación y ejecución
 ### Backend (puerto 5000)
 ```bash
