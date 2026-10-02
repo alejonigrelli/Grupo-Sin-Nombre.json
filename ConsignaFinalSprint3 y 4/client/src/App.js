@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ContactForm from './components/ContactForm';
 import './App.css';
 
 function App() {
@@ -39,16 +40,8 @@ function App() {
           </section>
         )}
 
-        {vista === 'contacto' && (
-          <section className="contacto">
-            <div className="container">
-              <h1 className="seccion__titulo">Contactanos</h1>
-              <p className="vista-placeholder">
-                El formulario de contacto se arma en un proximo paso.
-              </p>
-            </div>
-          </section>
-        )}
+        {/* El formulario maneja su propio estado y validacion, no necesita props */}
+        {vista === 'contacto' && <ContactForm />}
       </main>
 
       <Footer onNavigate={setVista} />
