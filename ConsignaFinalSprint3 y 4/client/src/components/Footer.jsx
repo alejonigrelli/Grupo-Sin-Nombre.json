@@ -1,4 +1,6 @@
-function Footer({ onNavigate }) {
+import React from 'react';
+
+function Footer({ onVerInicio, onVerProductos, onVerContacto }) {
   return (
     <footer className="footer">
       <div className="container">
@@ -10,39 +12,13 @@ function Footer({ onNavigate }) {
         <div>
           <h3 className="footer__titulo">Paginas</h3>
           <div className="footer__links">
-            <a
-              href="#inicio"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('inicio');
-              }}
-            >
-              Inicio
-            </a>
-            <a
-              href="#productos"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('productos');
-              }}
-            >
-              Productos
-            </a>
-            <a
-              href="#contacto"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate('contacto');
-              }}
-            >
-              Contacto
-            </a>
+            <a href="#" onClick={(e) => { e.preventDefault(); onVerInicio(); }}>Inicio</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); onVerProductos(); }}>Productos</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); onVerContacto(); }}>Contacto</a>
           </div>
         </div>
         <div>
-          <p className="footer__copy">
-            &copy; 2026 Muebleria Hermanos Jota. Todos los derechos reservados.
-          </p>
+          <p className="footer__copy">&copy; 2026 Muebleria Hermanos Jota. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

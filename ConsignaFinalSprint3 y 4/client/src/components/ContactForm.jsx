@@ -25,13 +25,6 @@ function ContactForm() {
       ...errores,
       [e.target.name]: ''
     });
-
-    // Si ya se habia enviado un mensaje y el usuario empieza a escribir otro,
-    // ocultamos el cartel de exito. Si no, queda colgado arriba de un
-    // formulario nuevo a medio completar y confunde.
-    if (enviado) {
-      setEnviado(false);
-    }
   };
 
   const handleSubmit = (e) => {
@@ -72,13 +65,7 @@ function ContactForm() {
     <section className="contacto">
       <div className="container">
         <h1 className="seccion__titulo">Contactanos</h1>
-        {/*
-          noValidate apaga la validacion automatica del navegador.
-          Sin esto, un email mal escrito hace que el navegador corte el submit y
-          muestre su propio cartel, por lo que handleSubmit nunca llega a correr
-          y nuestros mensajes de error en pantalla no se ven nunca.
-        */}
-        <form className="contacto__formulario" onSubmit={handleSubmit} noValidate>
+        <form className="contacto__formulario" onSubmit={handleSubmit}>
           <div className="contacto__grupo">
             <label className="contacto__label" htmlFor="nombre">Nombre:</label>
             <input

@@ -1,42 +1,42 @@
-import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 
-function ProductList({ productos = [], onVerDetalle }) {
-  const [busqueda, setBusqueda] = useState('');
+function ProductList({ productos, cargando, error, onVerDetalle, onAgregarCarrito }) {
+  if (cargando) {
+    return (
+      <section className="seccion">
+        <div className="container">
+          <p>Cargando productos...</p>
+        </div>
+      </section>
+    );
+  }
 
-  // Nos aseguramos de que productos sea un array antes de filtrar
-  const productosFiltrados = Array.isArray(productos) 
-    ? productos.filter(p => p.nombre.toLowerCase().includes(busqueda.toLowerCase()))
-    : [];
+  if (error) {
+    return (
+      <section className="seccion">
+        <div className="container">
+          <p className="estado-error">Error: {error}</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <div className="container">
-      <h2 className="seccion__titulo">Nuestros Productos</h2>
-      
-      <div className="buscador">
-        <input 
-          type="text" 
-          placeholder="Buscar productos..." 
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-          className="buscador__input"
-        />
-      </div>
-
-      <div className="productos-grilla">
-        {productosFiltrados.length > 0 ? (
-          productosFiltrados.map(producto => (
-            <ProductCard 
-              key={producto.id || producto._id} 
-              producto={producto} 
-              onVerDetalle={onVerDetalle} 
+    <section className="seccion">
+      <div className="container">
+        <h2 className="seccion__titulo">Nuestros Productos</h2>
+        <div className="productos-grilla">
+          {productos.map(producto => (
+            <ProductCard
+              key={producto.id}
+              producto={producto}
+              onVerDetalle={onVerDetalle}
+              onAgregarCarrito={onAgregarCarrito}
             />
-          ))
-        ) : (
-          <p className="vista-placeholder">Cargando productos o no se encontraron resultados...</p>
-        )}
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 

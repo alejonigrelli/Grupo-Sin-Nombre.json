@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -9,16 +11,6 @@ body {
   background-color: #FFF8E1;
   color: #3E2723;
   line-height: 1.6;
-}
-
-.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.app main {
-  flex: 1;
 }
 
 a {
@@ -36,17 +28,14 @@ img {
   display: block;
 }
 
+/* ===== UTILIDADES ===== */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-.vista-placeholder {
-  text-align: center;
-  color: #5D4037;
-}
-
+/* ===== HEADER ===== */
 .header {
   background-color: #3E2723;
   color: #FFF8E1;
@@ -71,6 +60,7 @@ img {
   color: #FF8F00;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .header__logo-img {
@@ -88,6 +78,7 @@ img {
   color: #FFF8E1;
   font-size: 0.95rem;
   transition: color 0.3s;
+  cursor: pointer;
 }
 
 .header__nav a:hover {
@@ -119,9 +110,10 @@ img {
   justify-content: center;
 }
 
+/* ===== HERO ===== */
 .hero {
   background-color: #5D4037;
-  background-image: linear-gradient(rgba(62, 39, 35, 0.7), rgba(62, 39, 35, 0.7)), url('./assets/hero.jpg');
+  background-image: linear-gradient(rgba(62, 39, 35, 0.7), rgba(62, 39, 35, 0.7));
   background-size: cover;
   background-position: center;
   color: #FFF8E1;
@@ -158,6 +150,7 @@ img {
   background-color: #F57C00;
 }
 
+/* ===== SECCION ===== */
 .seccion {
   padding: 2rem 0;
 }
@@ -170,6 +163,7 @@ img {
   color: #3E2723;
 }
 
+/* ===== GRILLA DE PRODUCTOS ===== */
 .productos-grilla {
   display: flex;
   flex-wrap: wrap;
@@ -177,6 +171,7 @@ img {
   justify-content: center;
 }
 
+/* ===== CARD DE PRODUCTO ===== */
 .producto-card {
   background-color: #fff;
   border: 1px solid #D7CCC8;
@@ -216,6 +211,12 @@ img {
   margin-bottom: 0.8rem;
 }
 
+.producto-card__acciones {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .producto-card__link {
   display: inline-block;
   background-color: #FF8F00;
@@ -233,26 +234,15 @@ img {
   background-color: #F57C00;
 }
 
-.buscador {
-  text-align: center;
-  padding: 1.5rem 1rem;
+.producto-card__link--carrito {
+  background-color: #3E2723;
 }
 
-.buscador__input {
-  width: 100%;
-  max-width: 500px;
-  padding: 0.7rem 1rem;
-  border: 1px solid #D7CCC8;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  outline: none;
+.producto-card__link--carrito:hover {
+  background-color: #5D4037;
 }
 
-.buscador__input:focus {
-  border-color: #FF8F00;
-}
-
+/* ===== DETALLE DE PRODUCTO ===== */
 .detalle {
   padding: 2rem 0;
 }
@@ -319,6 +309,15 @@ img {
   background-color: #F57C00;
 }
 
+.detalle__boton--volver {
+  background-color: #3E2723;
+}
+
+.detalle__boton--volver:hover {
+  background-color: #5D4037;
+}
+
+/* ===== FORMULARIO DE CONTACTO ===== */
 .contacto {
   padding: 2rem 0;
 }
@@ -383,6 +382,7 @@ img {
   border-radius: 4px;
   text-align: center;
   font-weight: 600;
+  margin-top: 1rem;
 }
 
 .contacto__error {
@@ -390,6 +390,60 @@ img {
   font-size: 0.85rem;
 }
 
+/* ===== CARRITO ===== */
+.carrito-lista {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid #D7CCC8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.carrito-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #D7CCC8;
+}
+
+.carrito-item:last-child {
+  border-bottom: none;
+}
+
+.carrito-item__nombre {
+  flex: 1;
+  font-weight: 500;
+  color: #3E2723;
+}
+
+.carrito-item__cantidad {
+  color: #5D4037;
+  margin: 0 1.5rem;
+}
+
+.carrito-item__precio {
+  font-weight: 700;
+  color: #FF8F00;
+}
+
+.carrito-total {
+  text-align: right;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #3E2723;
+  padding: 1rem 0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.estado-error {
+  color: #C62828;
+  text-align: center;
+}
+
+/* ===== FOOTER ===== */
 .footer {
   background-color: #3E2723;
   color: #FFF8E1;
@@ -439,6 +493,7 @@ img {
   margin-top: 1rem;
 }
 
+/* ===== RESPONSIVE ===== */
 @media (min-width: 768px) {
   .hero__titulo {
     font-size: 2.2rem;
