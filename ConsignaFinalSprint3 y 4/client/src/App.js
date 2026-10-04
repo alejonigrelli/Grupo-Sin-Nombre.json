@@ -96,7 +96,7 @@ function App() {
             <section className="hero">
               <h1 className="hero__titulo">Muebles con estilo para tu hogar</h1>
               <p className="hero__subtitulo">Fabricados en madera maciza con la mejor calidad artesanal</p>
-              <button className="hero__boton" onClick={() => setVista('productos')}>Ver Catalogo</button>
+              <button className="hero__boton" onClick={() => setVista('productos')}>Ver Catálogo</button>
             </section>
 
             <section className="seccion">

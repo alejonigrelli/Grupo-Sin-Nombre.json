@@ -10,7 +10,7 @@ function Footer({ onVerInicio, onVerProductos, onVerContacto }) {
           <p className="footer__texto">(011) 1234-5678</p>
         </div>
         <div>
-          <h3 className="footer__titulo">Paginas</h3>
+          <h3 className="footer__titulo">Páginas</h3>
           <div className="footer__links">
             <a href="#" onClick={(e) => { e.preventDefault(); onVerInicio(); }}>Inicio</a>
             <a href="#" onClick={(e) => { e.preventDefault(); onVerProductos(); }}>Productos</a>
@@ -18,7 +18,7 @@ function Footer({ onVerInicio, onVerProductos, onVerContacto }) {
           </div>
         </div>
         <div>
-          <p className="footer__copy">&copy; 2026 Muebleria Hermanos Jota. Todos los derechos reservados.</p>
+          <p className="footer__copy">&copy; 2026 Mueblería Hermanos Jota. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

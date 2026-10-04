@@ -43,7 +43,7 @@ function ContactForm() {
       nuevosErrores.email = 'El email es obligatorio.';
       esValido = false;
     } else if (!regexEmail.test(formData.email.trim())) {
-      nuevosErrores.email = 'Ingresa un email valido.';
+      nuevosErrores.email = 'Ingresa un email válido.';
       esValido = false;
     }
 
@@ -64,7 +64,7 @@ function ContactForm() {
   return (
     <section className="contacto">
       <div className="container">
-        <h1 className="seccion__titulo">Contactanos</h1>
+        <h1 className="seccion__titulo">Contáctanos</h1>
         <form className="contacto__formulario" onSubmit={handleSubmit}>
           <div className="contacto__grupo">
             <label className="contacto__label" htmlFor="nombre">Nombre:</label>
@@ -106,7 +106,7 @@ function ContactForm() {
         </form>
         {enviado && (
           <div className="contacto__mensaje-exito" style={{ display: 'block' }}>
-            ¡Mensaje enviado con exito! Nos pondremos en contacto pronto.
+            ¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.
           </div>
         )}
       </div>

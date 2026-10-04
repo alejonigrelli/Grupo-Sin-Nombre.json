@@ -1,8 +1,20 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import App from './App';
 
-test('renders learn react link', () => {
+beforeEach(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve([]),
+    })
+  );
+});
+
+test('renderiza el título de inicio', async () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText(/Muebles con estilo para tu hogar/i)).toBeInTheDocument();
+  await waitFor(() => {
+    expect(screen.queryByText(/Cargando productos destacados/i)).not.toBeInTheDocument();
+  });
 });
