@@ -14,8 +14,12 @@ function App() {
 
   // Carrito de compras como estado en App.js con persistencia en localStorage
   const [carrito, setCarrito] = useState(() => {
-    const carritoGuardado = localStorage.getItem('carrito');
-    return carritoGuardado ? JSON.parse(carritoGuardado) : [];
+    try {
+      const carritoGuardado = localStorage.getItem('carrito');
+      return carritoGuardado ? JSON.parse(carritoGuardado) : [];
+    } catch {
+      return [];
+    }
   });
 
   // Guardar en localStorage cada vez que el carrito cambie
