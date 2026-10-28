@@ -6,6 +6,7 @@ import ProductList from './components/ProductList';
 import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
 import ContactForm from './components/ContactForm';
+import AdminCrearProducto from './components/AdminCrearProducto';
 import './App.css';
 
 function App() {
@@ -57,6 +58,10 @@ function App() {
 
   const vaciarCarrito = () => {
     setCarrito([]);
+  };
+
+  const handleProductoCreado = (nuevoProducto) => {
+    setProductos(prev => [nuevoProducto, ...prev]);
   };
 
   const cantidadCarrito = carrito.reduce((total, item) => total + item.cantidad, 0);
@@ -127,6 +132,12 @@ function App() {
 
             {/* Ruta /contacto — Formulario */}
             <Route path="/contacto" element={<ContactForm />} />
+
+            {/* Ruta /admin/crear-producto — Alta de producto */}
+            <Route
+              path="/admin/crear-producto"
+              element={<AdminCrearProducto onProductoCreado={handleProductoCreado} />}
+            />
 
             {/* Ruta /carrito — Carrito de compras */}
             <Route
