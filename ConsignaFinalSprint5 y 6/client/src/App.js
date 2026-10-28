@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProductList from './components/ProductList';
 import ProductCard from './components/ProductCard';
+import ProductDetail from './components/ProductDetail';
 import ContactForm from './components/ContactForm';
 import './App.css';
 
@@ -116,6 +117,12 @@ function App() {
                   onAgregarCarrito={agregarAlCarrito}
                 />
               }
+            />
+
+            {/* Ruta /productos/:id — Detalle dinámico */}
+            <Route
+              path="/productos/:id"
+              element={<ProductDetail onAgregarCarrito={agregarAlCarrito} />}
             />
 
             {/* Ruta /contacto — Formulario */}
