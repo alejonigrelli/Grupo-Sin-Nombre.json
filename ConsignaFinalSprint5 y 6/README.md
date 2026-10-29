@@ -7,10 +7,6 @@
 - Sebastian Farnochi
 - Alejo Nigrelli
 
-## Enlaces de Despliegue
-- **Frontend (Vercel / Netlify):** [URL_DEL_FRONTEND_AQUI]
-- **Backend (Render):** [URL_DEL_BACKEND_AQUI]
-
 ## Arquitectura
 ```text
 /
@@ -44,11 +40,7 @@
 ## Instalación y ejecución
 
 ### Variables de entorno (.env)
-Crear un archivo `.env` dentro de la carpeta `backend/` tomando como base `.env.example`:
-```env
-PORT=5000
-MONGODB_URI=mongodb+srv://<usuario>:<password>@cluster0.xxxxx.mongodb.net/muebleria?retryWrites=true&w=majority
-```
+Crear un archivo `.env` dentro de la carpeta `backend/`
 
 ### Backend (puerto 5000)
 ```bash
