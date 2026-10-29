@@ -25,7 +25,7 @@ function ProductList({ productos, cargando, error, onAgregarCarrito }) {
   return (
     <section className="seccion">
       <div className="container">
-        <h2 className="seccion__titulo">Nuestros Productos</h2>
+        <h2 className="seccion__titulo">Nuestros Productos ({productos.length})</h2>
         {productos.length === 0 ? (
           <p style={{ textAlign: 'center' }}>No hay productos disponibles por el momento.</p>
         ) : (
