@@ -2,10 +2,18 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
 
-// GET /api/productos — devuelve todos los productos
+// GET /api/productos — devuelve todos los productos o filtra por nombre si se pasa ?nombre=...
 router.get('/', async (req, res) => {
   try {
-    const productos = await Product.find();
+    const { nombre } = req.query;
+    let filtro = {};
+    
+    if (nombre) {
+      // Búsqueda insensible a mayúsculas/minúsculas usando una expresión regular
+      filtro.nombre = { $regex: nombre, $options: 'i' };
+    }
+
+    const productos = await Product.find(filtro);
     res.json(productos);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener productos', error: error.message });
