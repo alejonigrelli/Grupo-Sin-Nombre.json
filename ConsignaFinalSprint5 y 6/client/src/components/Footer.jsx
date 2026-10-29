@@ -22,7 +22,7 @@ function Footer() {
           <p className="footer__copy">&copy; 2026 Mueblería Hermanos Jota. Todos los derechos reservados.</p>
         </div>
       </div>
-    </footer>
+    </footer> 
   );
 }
 
