@@ -7,6 +7,7 @@ import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
 import ContactForm from './components/ContactForm';
 import AdminCrearProducto from './components/AdminCrearProducto';
+import { API_URL } from './config';
 import './App.css';
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
 
   // Fetch a GET /api/productos
   useEffect(() => {
-    fetch('http://localhost:5000/api/productos')
+    fetch(`${API_URL}/api/productos`)
       .then(res => {
         if (!res.ok) throw new Error('Error al obtener productos');
         return res.json();

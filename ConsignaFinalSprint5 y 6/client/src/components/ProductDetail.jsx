@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 function ProductDetail({ onAgregarCarrito }) {
   const { id } = useParams();
@@ -13,7 +14,7 @@ function ProductDetail({ onAgregarCarrito }) {
     setCargando(true);
     setError(null);
 
-    fetch(`http://localhost:5000/api/productos/${id}`)
+    fetch(`${API_URL}/api/productos/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('Producto no encontrado');

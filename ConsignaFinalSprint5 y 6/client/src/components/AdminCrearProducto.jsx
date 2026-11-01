@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 function AdminCrearProducto({ onProductoCreado }) {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ function AdminCrearProducto({ onProductoCreado }) {
         imagenUrl: form.imagenUrl.trim()
       };
 
-      const res = await fetch('http://localhost:5000/api/productos', {
+      const res = await fetch(`${API_URL}/api/productos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
