@@ -73,6 +73,12 @@ function App() {
     );
   };
 
+  // Quita el producto eliminado del catálogo y también del carrito si estaba agregado
+  const handleProductoEliminado = (id) => {
+    setProductos(prev => prev.filter(p => p._id !== id));
+    setCarrito(prev => prev.filter(item => (item._id || item.id) !== id));
+  };
+
   const cantidadCarrito = carrito.reduce((total, item) => total + item.cantidad, 0);
   const productosDestacados = productos.filter(p => p.destacado === true || p.stock > 0).slice(0, 4);
 
@@ -136,7 +142,12 @@ function App() {
             {/* Ruta /productos/:id — Detalle dinámico */}
             <Route
               path="/productos/:id"
-              element={<ProductDetail onAgregarCarrito={agregarAlCarrito} />}
+              element={
+                <ProductDetail
+                  onAgregarCarrito={agregarAlCarrito}
+                  onProductoEliminado={handleProductoEliminado}
+                />
+              }
             />
 
             {/* Ruta /contacto — Formulario */}

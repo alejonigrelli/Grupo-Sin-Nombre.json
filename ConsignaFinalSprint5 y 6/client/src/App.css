@@ -334,6 +334,19 @@ img {
   background-color: #8D6E63;
 }
 
+.detalle__boton--eliminar {
+  background-color: #C62828;
+}
+
+.detalle__boton--eliminar:hover {
+  background-color: #B71C1C;
+}
+
+.detalle__admin .detalle__boton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* ===== FORMULARIO DE CONTACTO ===== */
 .contacto {
   padding: 2rem 0;

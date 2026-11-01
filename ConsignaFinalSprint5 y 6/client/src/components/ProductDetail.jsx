@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { API_URL } from '../config';
 
-function ProductDetail({ onAgregarCarrito }) {
+function ProductDetail({ onAgregarCarrito, onProductoEliminado }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+  const [eliminando, setEliminando] = useState(false);
+  const [errorEliminar, setErrorEliminar] = useState(null);
 
   useEffect(() => {
     setCargando(true);
@@ -30,6 +32,37 @@ function ProductDetail({ onAgregarCarrito }) {
         setCargando(false);
       });
   }, [id]);
+
+  // Elimina el producto en el backend (previa confirmación) y vuelve al catálogo
+  const handleEliminar = async () => {
+    const confirmado = window.confirm(
+      `¿Seguro que querés eliminar "${producto.nombre}"? Esta acción no se puede deshacer.`
+    );
+    if (!confirmado) {
+      return;
+    }
+
+    setEliminando(true);
+    setErrorEliminar(null);
+
+    try {
+      const res = await fetch(`${API_URL}/api/productos/${id}`, { method: 'DELETE' });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.mensaje || 'Error al eliminar el producto');
+      }
+
+      if (onProductoEliminado) {
+        onProductoEliminado(id);
+      }
+
+      navigate('/productos');
+    } catch (err) {
+      setErrorEliminar(err.message);
+      setEliminando(false);
+    }
+  };
 
   if (cargando) {
     return (
@@ -116,10 +149,20 @@ function ProductDetail({ onAgregarCarrito }) {
                 type="button"
                 className="detalle__boton detalle__boton--editar"
                 onClick={() => navigate(`/admin/editar-producto/${id}`)}
+                disabled={eliminando}
               >
                 Editar
               </button>
+              <button
+                type="button"
+                className="detalle__boton detalle__boton--eliminar"
+                onClick={handleEliminar}
+                disabled={eliminando}
+              >
+                {eliminando ? 'Eliminando...' : 'Eliminar'}
+              </button>
             </div>
+            {errorEliminar && <p className="estado-error">{errorEliminar}</p>}
 
             <button
               type="button"
