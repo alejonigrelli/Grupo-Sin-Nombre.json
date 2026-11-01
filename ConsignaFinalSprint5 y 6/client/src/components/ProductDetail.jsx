@@ -110,6 +110,17 @@ function ProductDetail({ onAgregarCarrito }) {
               Añadir al Carrito
             </button>
 
+            {/* Acciones de administración del producto */}
+            <div className="detalle__admin">
+              <button
+                type="button"
+                className="detalle__boton detalle__boton--editar"
+                onClick={() => navigate(`/admin/editar-producto/${id}`)}
+              >
+                Editar
+              </button>
+            </div>
+
             <button
               type="button"
               className="detalle__boton detalle__boton--volver"

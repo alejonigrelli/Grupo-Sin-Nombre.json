@@ -7,6 +7,7 @@ import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
 import ContactForm from './components/ContactForm';
 import AdminCrearProducto from './components/AdminCrearProducto';
+import AdminEditarProducto from './components/AdminEditarProducto';
 import { API_URL } from './config';
 import './App.css';
 
@@ -63,6 +64,13 @@ function App() {
 
   const handleProductoCreado = (nuevoProducto) => {
     setProductos(prev => [nuevoProducto, ...prev]);
+  };
+
+  // Reemplaza el producto editado en la lista para que el catálogo muestre los cambios sin recargar
+  const handleProductoActualizado = (productoActualizado) => {
+    setProductos(prev =>
+      prev.map(p => (p._id === productoActualizado._id ? productoActualizado : p))
+    );
   };
 
   const cantidadCarrito = carrito.reduce((total, item) => total + item.cantidad, 0);
@@ -138,6 +146,12 @@ function App() {
             <Route
               path="/admin/crear-producto"
               element={<AdminCrearProducto onProductoCreado={handleProductoCreado} />}
+            />
+
+            {/* Ruta /admin/editar-producto/:id — Edición de producto */}
+            <Route
+              path="/admin/editar-producto/:id"
+              element={<AdminEditarProducto onProductoActualizado={handleProductoActualizado} />}
             />
 
             {/* Ruta /carrito — Carrito de compras */}

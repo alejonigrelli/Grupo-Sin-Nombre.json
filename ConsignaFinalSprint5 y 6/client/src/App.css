@@ -319,6 +319,21 @@ img {
   background-color: #5D4037;
 }
 
+/* Botones de administración (editar / eliminar) en el detalle */
+.detalle__admin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.detalle__boton--editar {
+  background-color: #6D4C41;
+}
+
+.detalle__boton--editar:hover {
+  background-color: #8D6E63;
+}
+
 /* ===== FORMULARIO DE CONTACTO ===== */
 .contacto {
   padding: 2rem 0;
