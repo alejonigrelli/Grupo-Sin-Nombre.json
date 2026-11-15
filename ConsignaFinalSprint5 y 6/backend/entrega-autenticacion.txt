@@ -1,0 +1,56 @@
+1. Grupo 10
+Integrantes:
+- Gabriel Ollier
+- Ivan Mariano Yamin
+- Justo Cardilli
+- Sebastián Farnochi
+- Alejo Nigrelli
+
+2. Pruebas en verde: 12/12
+
+3. Entrega Autenticacion (txt):
+A. Qué hizo el agente que la spec no pedía
+
+En terminos generales no detectamos desviaciones, pero dejamos constancia de que:
+Implementó la Fase 1: modelo de usuario, ruta de registro y montaje en /api/usuarios. El registro normaliza el email, hashea la contraseña, responde sin incluirla y maneja datos inválidos y emails duplicados. A pedido nuestro, no ejecutó las pruebas porque escribian en la base de datos y requerian autorizacion las instrucciones. No detectamos desviaciones
+Implementó la Fase 2 en routes/usuarios.js: la misma valida y normaliza los datos, compara la contraseña con bcrypt, devuelve el mismo 401 para ambas credenciales inválidas y, si el login es correcto, firma un JWT de una hora con { id, rol } y responde sin incluir la contraseña ni el hash. Agregó jsonwebtoken a package.json y actualizó package-lock.json. Verificó la sintaxis y la dependencia. 
+Nota: En este punto tuvimos un inconveniente producto de una confusion nuestra: Al iniciar las pruebas, el servidor intentó crear el token del usuario en el login, pero falló porque no encontró la clave secreta (JWT_SECRET) para firmarlo, ya que faltaba configurarla en el archivo (por peticion explicita de las reglas de la actividad y las restricciones impuestas al agente); esto provocó que un principio tuvieramos 5/6 pruebas en verde, hasta su posterior correccion. 
+Implementó la Fase 3: middleware/auth.js: valida el header Bearer y verifica el JWT; ante token ausente, mal formado, inválido o vencido responde 401. Y routes/usuarios.js: agrega GET /perfil, consulta por el ID verificado y devuelve solo los campos públicos.
+Por ultimo implementó y verificó la Fase 4: 12/12 pruebas en verde. Las pruebas cubrieron registro, login, perfil y autorización de productos; finalizaron correctamente.
+Cambios de esta fase:
+middleware/auth.js: agregó soloAdmin, que responde 403 si el usuario no tiene rol admin.
+routes/productos.js: protegió POST, PUT y DELETE; los GET siguen públicos.
+
+B. Cuatro preguntas (respuestas del grupo, sin el agente)
+
+1. ¿En qué archivo y en qué línea se hashea la contraseña? ¿Por qué no se guarda tal cual?
+Respuesta del grupo: 
+En backend/routes/usuarios.js, exactamente en la línea 31: const passwordHasheado = await bcrypt.hash(password, 10);
+(donde luego se almacena en el documento del modelo Usuario en la línea 35).
+¿Por qué no se guarda tal cual (en texto plano)?
+Por una razón fundamental de seguridad y confidencialidad. Si la base de datos llega a sufrir una filtración, un volcado accidental de datos, un ataque de inyección o si personal con acceso a la base inspecciona los registros, almacenar contraseñas en texto plano expondría directamente las credenciales reales de los usuarios. Dado que la mayoría de los usuarios reutilizan contraseñas en distintos sitios, el compromiso sería masivo. Al hashearla con bcrypt (un algoritmo unidireccional y robusto que incorpora salt), la contraseña original es matemáticamente irreversible, garantizando que ni siquiera los administradores del sistema puedan conocerla.
+
+2. ¿Qué viaja dentro del token? Decodifiquen uno y péguenlo. ¿Por qué no puede ir la contraseña ahí?
+Respuesta del grupo: 
+¿Qué viaja dentro del token? En el payload del token viajan el identificador del usuario (id), su rol (rol), y los metadatos temporales estándar generados por JWT: iat (issued at, cuándo se creó) y exp (expiration, cuándo vence).
+{
+  "id": "67354a8b9f12d8a4e12c9e31",
+  "rol": "cliente",
+  "iat": 1731633600,
+  "exp": 1731637200
+}
+¿Por qué no puede ir la contraseña ahí?
+Porque un JSON Web Token (JWT) no está cifrado, solo está codificado en Base64URL. La firma del token sirve para verificar su integridad y autenticidad (que no fue alterado), pero el payload es completamente visible y público para cualquiera que intercepte el token o lo lea desde el navegador (por ejemplo, pegándolo en jwt.io o decodificándolo en JavaScript). Poner la contraseña o incluso su hash dentro del token expondría directamente la credencial en cada petición HTTP, en el almacenamiento local del cliente y en los logs intermedios.
+
+3. ¿Por qué el login responde lo mismo si falla el email o si falla la contraseña?
+Respuesta del grupo: 
+Para prevenir ataques de enumeración de usuarios (user enumeration attacks).
+Si el servidor respondiera mensajes diferenciados (por ejemplo, "El email no está registrado" frente a "Contraseña incorrecta"), un atacante podría probar listas automáticas de correos y deducir con certeza cuáles usuarios existen en la plataforma y cuáles no. Con esa información confirmada, el atacante puede concentrar ataques de fuerza bruta dirigidos, phishing o ingeniería social sobre las cuentas existentes. Responder siempre el mismo código (401 Unauthorized) y el mismo mensaje genérico ("Credenciales inválidas") no brinda pistas al atacante sobre qué dato fue el que falló.
+
+4. ¿Por qué después de cambiar el rol a admin en Compass hay que volver a loguearse?
+Respuesta del grupo: 
+Porque la autenticación con JWT es stateless (sin estado en el servidor):
+Al iniciar sesión, el rol del usuario se empaqueta y firma dentro del payload del token ({ id, rol }).
+Cuando el usuario hace peticiones a rutas protegidas (como POST /api/productos), el middleware verificarToken y soloAdmin lee el rol directamente desde el token recibido en la cabecera Authorization, sin consultar nuevamente a la base de datos.
+Modificar el campo rol en MongoDB vía Compass cambia el documento en la base, pero no modifica los tokens ya emitidos. El token que el cliente tiene guardado sigue teniendo "rol": "cliente".
+Por lo tanto, es necesario volver a iniciar sesión (POST /api/usuarios/login) para que el servidor consulte la base de datos actualizada y firme un nuevo token que contenga "rol": "admin" en su interior.

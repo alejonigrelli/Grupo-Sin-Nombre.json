@@ -1,0 +1,80 @@
+Registro de trabajo — práctica de categorías
+=============================================
+
+Estado actual
+-------------
+- Fases 0, 1, 2, 3 y 4 completadas.
+- Validación final informada por el usuario: npm test, 8 pruebas, 8 aprobadas y 0 fallidas.
+- El resultado se obtuvo con el servidor conectado a MongoDB Atlas y los datos del catálogo disponibles.
+- No se anotan URI, credenciales ni contenido del archivo .env.
+
+Punto 0 — Kit y línea base
+--------------------------
+- Copié AGENTS.md, docs/spec-categorias.md y tests/contrato.test.js del kit a backend.
+- Configuré npm test para ejecutar node --test tests/contrato.test.js.
+- Agregué npm run dev con node index.js, necesario para seguir la consigna de levantar el servidor.
+- Restauré las dependencias ya declaradas en package-lock.json con npm ci porque no existía node_modules.
+- npm ci no agregó dependencias ni cambió package-lock.json. Informó 2 vulnerabilidades en el árbol de
+  dependencias (1 moderada y 1 alta); no ejecuté npm audit fix.
+- Desvío de preparación: el servidor usa el puerto 5000 por defecto y el test apunta a localhost:3000.
+  Se configuró PORT=3000 localmente para probar, sin cambiar el puerto por defecto del backend.
+- Línea base: 0/8; no había servidor escuchando y faltaba MONGODB_URI.
+
+Punto 1 — Corrección de AGENTS.md
+---------------------------------
+- Ajusté las instrucciones para describir la estructura, configuración y manejo de errores reales del backend.
+- No cambié la API ni implementé categorías.
+- No hubo desvíos de alcance.
+
+Fase 1 — Datos
+--------------
+- Agregué models/Categoria.js con nombre obligatorio, único y trim, y timestamps.
+- Agregué a Product la referencia opcional categoria de tipo ObjectId con ref Categoria.
+- No hubo desvíos de la spec.
+- En la verificación de esa etapa, npm test quedó en 0/8 porque todavía no había servidor conectado.
+
+Fase 2 — Rutas de categorías
+----------------------------
+- Agregué GET /api/categorias ordenado por nombre y POST /api/categorias con respuesta 201.
+- Monté el router en index.js.
+- El manejador central responde 409 para errores MongoDB 11000 y 400 para ValidationError.
+- No hubo desvíos de la spec.
+- En la verificación de esa etapa, npm test quedó en 0/8 porque todavía no había servidor conectado.
+
+Fase 3 — Productos
+-------------------
+- Agregué populate('categoria', 'nombre') a los GET de productos y el filtro por ?categoria= con validación
+  del formato del ID.
+- Agregué la comprobación de existencia de la categoría antes de guardar en POST y PUT.
+- El GET de detalle devuelve 400 para un ID mal formado y conserva 404 para un ID válido sin producto.
+- No hubo desvíos de la spec.
+- En la verificación de esa etapa, npm test quedó en 0/8 porque todavía no había servidor conectado.
+- Una validación aislada con modelos simulados comprobó populate, filtro, IDs inválidos, categoría inexistente
+  y creación/actualización con categoría válida.
+
+Fase 4 — Seed y relación con el catálogo
+----------------------------------------
+- El seed crea o reutiliza las categorías Guardado, Sillones, Mesas, Sillas y Escritorios.
+- Asigna categorías a los 11 productos definidos en data/productos.js; también completa la categoría de
+  productos existentes para que volver a ejecutar el seed no los deje sin referencia.
+- La spec no define la asignación exacta producto-categoría; usé una clasificación coherente con los nombres
+  y tipos de muebles del catálogo. Esta decisión queda registrada como criterio de clasificación, no como
+  un requisito explícito de la spec.
+- La prueba simulada del seed verificó la asignación a un producto existente, la creación de los otros diez
+  productos y que una segunda ejecución no duplicara productos ni categorías.
+- El usuario informó que, con MongoDB conectado y los datos disponibles, ejecutó npm test: 8 pruebas,
+  8 aprobadas y 0 fallidas.
+- Las pruebas de contrato confirman que hay categorías y productos categorizados, y que funcionan las rutas
+  evaluadas. No enumeran el catálogo completo ni confirman que MongoDB contenga exactamente los 11 productos
+  del seed; para registrar un inventario exacto haría falta exportar o consultar ese catálogo.
+
+Desvíos respecto de la spec
+---------------------------
+- No se agregaron librerías ni rutas fuera de la especificación de categorías.
+- Única decisión no especificada: asignación de cada producto a una categoría concreta en el seed, detallada
+  arriba. No se detectaron otros cambios fuera de alcance.
+
+---------------------------------------------
+Registro de trabajo — práctica de categorías
+=============================================
+

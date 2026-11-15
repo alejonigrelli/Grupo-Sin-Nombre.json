@@ -7,7 +7,8 @@ const productSchema = new mongoose.Schema({
   stock: { type: Number, default: 10 },
   imagenUrl: { type: String },
   destacado: { type: Boolean, default: false },
-  especificaciones: { type: mongoose.Schema.Types.Mixed }
+  especificaciones: { type: mongoose.Schema.Types.Mixed },
+  categoria: { type: mongoose.Schema.Types.ObjectId, ref: 'Categoria' }
 });
 
 module.exports = mongoose.model('Product', productSchema);
